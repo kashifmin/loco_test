@@ -1,5 +1,6 @@
 import 'package:loco_test/models/Question.dart';
 import 'package:loco_test/services/quiz_service.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract class QuizPageContract {
   void onNewQuestionLive(Question quiz);
@@ -12,5 +13,12 @@ class QuizPagePresenter {
   QuizService _service;
   QuizPagePresenter(this._view) {
     _service = new QuizService();
+    _service.getQuestions().forEach((Question q) => _onNewQuestion(q));
+  }
+
+  _onNewQuestion(Question q) {
+    _view.onNewQuestionLive(q);
+    new Observable.timer(null, new Duration(seconds: 5))
+    ..listen((i) { _view.onQuestionEnded(); });
   }
 }
