@@ -18,7 +18,7 @@ class QuizPagePresenter {
 
   _onNewQuestion(Question q) {
     _view.onNewQuestionLive(q);
-    new Observable.timer(null, new Duration(seconds: 5))
+    new Observable.timer(null, new Duration(seconds: 10))
     ..listen((i) { _view.onQuestionEnded(); });
   }
 }

@@ -24,7 +24,7 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
     // TODO: implement initState
     super.initState();
     _controller = new VideoPlayerController(
-      'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_20mb.mp4',
+      'http://192.168.43.173/SampleVideo_1280x720_20mb.mp4',
     )
       ..addListener(() {
         final bool isPlaying = _controller.value.isPlaying;
@@ -45,31 +45,41 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
       return new VideoPlayer(_controller);
     } else {
       return new Center(
-        child: new Card(
-          child: new Container(
-            width: 300.0,
-            padding: new EdgeInsets.all(8.0),
-            child: new Column(
-              mainAxisSize: MainAxisSize.min, // tightly wrap vertically
-              children: <Widget>[
-                new CircleAvatar(
-                  child: new VideoPlayer(_controller),
-                  backgroundColor: Colors.purple,
-                ),
-                new Text(_currentQuestion.content),
-                new ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: _currentQuestion.options.length,
-                  itemBuilder: (BuildContext ctx, int index) {
-                    return new ListTile(
-                      title: new Text(_currentQuestion.options[index]),
-                      onTap: () => {},
-                    );
-                  },
-                )
-              ],
+        child: new Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            new CircleAvatar(
+              radius: 50.0,
+              child: new ClipOval(
+                  child: new VideoPlayer(_controller)
+              ),
+
             ),
-          ),
+            new Card(
+              elevation: 30.0,
+              child: new Container(
+                width: 300.0,
+                padding: new EdgeInsets.all(8.0),
+                child: new Column(
+                  mainAxisSize: MainAxisSize.min, // tightly wrap vertically
+                  children: <Widget>[
+                    new Text(_currentQuestion.content),
+                    new ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: _currentQuestion.options.length,
+                      itemBuilder: (BuildContext ctx, int index) {
+                        return new ListTile(
+                          title: new Text(_currentQuestion.options[index]),
+                          onTap: () => {},
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ),
+            ), //card
+          ],
         ),
       );
     }
@@ -78,7 +88,7 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.deepPurple,
       body: new AspectRatio(
         aspectRatio: 720 / 1280,
         child: _getWidgetForState(),
