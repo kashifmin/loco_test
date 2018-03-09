@@ -24,7 +24,8 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
     // TODO: implement initState
     super.initState();
     _controller = new VideoPlayerController(
-      'http://192.168.43.173/SampleVideo_1280x720_20mb.mp4',
+     // 'http://192.168.43.173/SampleVideo_1280x720_20mb.mp4',
+      "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4"
     )
       ..addListener(() {
         final bool isPlaying = _controller.value.isPlaying;
