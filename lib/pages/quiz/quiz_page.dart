@@ -40,6 +40,12 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
     _presenter = new QuizPagePresenter(this);
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Widget _getWidgetForState() {
     if (!_isNewQuestionLive) {
       return new VideoPlayer(_controller);
@@ -51,10 +57,7 @@ class _QuizPageState extends State<QuizPage> implements QuizPageContract {
           children: <Widget>[
             new CircleAvatar(
               radius: 50.0,
-              child: new ClipOval(
-                  child: new VideoPlayer(_controller)
-              ),
-
+              child: new ClipOval(child: new VideoPlayer(_controller)),
             ),
             new Card(
               elevation: 30.0,

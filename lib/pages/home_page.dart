@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values); // enter full screen
+    SystemChrome.setEnabledSystemUIOverlays(
+        SystemUiOverlay.values); // enter full screen
 
     return new Scaffold(
       backgroundColor: Colors.purple,
@@ -15,7 +15,8 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             new Padding(
               padding: const EdgeInsets.all(8.0),
-              child: new Text("Start your live quiz now!",
+              child: new Text(
+                "Start your live quiz now!",
                 style: new TextStyle(color: Colors.white, fontSize: 20.0),
               ),
             ),
